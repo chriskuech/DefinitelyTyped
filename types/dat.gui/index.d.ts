@@ -62,22 +62,22 @@ export class GUI {
     constructor(option?: GUIParams);
 
     __controllers: GUIController[];
-    __folders: {[folderName: string]: GUI};
+    __folders: { [folderName: string]: GUI };
     domElement: HTMLElement;
 
-    add(target: Object, propName:string, min?: number, max?: number, step?: number): GUIController;
-    add(target: Object, propName:string, status: boolean): GUIController;
-    add(target: Object, propName:string, items:string[]): GUIController;
-    add(target: Object, propName:string, items:number[]): GUIController;
-    add(target: Object, propName:string, items:Object): GUIController;
+    add<T>(target: T, propName: keyof T, min?: number, max?: number, step?: number): GUIController;
+    add<T>(target: T, propName: keyof T, status: boolean): GUIController;
+    add<T>(target: T, propName: keyof T, items: string[]): GUIController;
+    add<T>(target: T, propName: keyof T, items: number[]): GUIController;
+    add<T>(target: T, propName: keyof T, items: Object): GUIController;
 
-    addColor(target: Object, propName:string): GUIController;
+    addColor<T>(target: T, propName: keyof T): GUIController;
 
     remove(controller: GUIController): void;
     destroy(): void;
 
-    addFolder(propName:string): GUI;
-    removeFolder(subFolder:GUI):void;
+    addFolder(propName: string): GUI;
+    removeFolder(subFolder: GUI): void;
 
     open(): void;
     close(): void;
@@ -89,8 +89,8 @@ export class GUI {
 
     getSaveObject(): Object;
     save(): void;
-    saveAs(presetName:string): void;
-    revert(gui:GUI): void;
+    saveAs(presetName: string): void;
+    revert(gui: GUI): void;
 
     listen(controller: GUIController): void;
     updateDisplay(): void;
